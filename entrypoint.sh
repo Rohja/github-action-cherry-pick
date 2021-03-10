@@ -32,6 +32,8 @@ if [[ $MESSAGE -gt 0 ]]; then
 fi
 
 PR_TITLE=$(git log -1 --format="%s" $GITHUB_SHA)
+# Remove the PR ID suffix from the title
+PR_TITLE_CLEANED=$(echo $PR_TITLE | sed 's/ (\#[0-9]*)//')
 
 git_setup
 git_cmd git remote update
